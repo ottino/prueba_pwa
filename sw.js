@@ -4,7 +4,7 @@ importScripts('js/sw-utils.js');
 
 // Los caches que vamos a utilizar
 const STATIC_CACHE     = 'static-v2';
-const DYNAMIC_CACHE    = 'dynamic-v1';
+const DYNAMIC_CACHE    = 'dynamic-v2';
 const INMUTABLE_CACHE  = 'inmutable-v1';
 
 // Todo lo que es necesaario para mi app (corazon de mi app)
@@ -52,8 +52,11 @@ self.addEventListener('activate' , e => {
 
         keys.forEach( key => {
 
-            // static-v4
             if (  key !== STATIC_CACHE && key.includes('static') ) {
+                return caches.delete(key);
+            }
+ 
+            if (  key !== DYNAMIC_CACHE && key.includes('dynamic') ) {
                 return caches.delete(key);
             }
 
