@@ -1,7 +1,15 @@
 
+var url = window.location.href;
+var swLocation = '/prueba_pwa/sw.js';
+
 // Referencia al service worker
 if ( navigator.serviceWorker ) {
-    navigator.serviceWorker.register('/sw.js');
+
+    if (url.includes('localhost')) {
+        swLocation = '/sw.js';
+    }
+
+    navigator.serviceWorker.register(swLocation);
 }
 
 
